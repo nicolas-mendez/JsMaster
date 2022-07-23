@@ -40,7 +40,7 @@ if((num>=10)&&(num<=50)){
 }*/
 
 //ejercicio random signos
-
+/*
 let signo = prompt("Ingresa tu signo");
 
 if(((signo == "Aries") || (signo == "ARIES") || (signo == "aries"))){
@@ -69,4 +69,24 @@ if(((signo == "Aries") || (signo == "ARIES") || (signo == "aries"))){
     alert("Naciste entre el 19 de febrero y el 20 de marzo");
 }else{
     alert("No ingresaste un signo");
+}
+*/
+
+//Ciclo for para numeros primos
+
+//debugger
+let primo = parseInt(prompt("Ingrese un numero para saber si es primo"));
+
+let esPrimo = true;
+
+for(let i = 2; i < primo; i++){
+    if(primo % i === 0){
+        esPrimo = false;
+    }
+}
+
+if(esPrimo){
+    alert("El numero "+primo+" es primo");
+}else{
+    alert("El numero "+primo+" no es primo");
 }
