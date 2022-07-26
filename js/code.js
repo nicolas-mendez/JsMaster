@@ -75,7 +75,7 @@ if(((signo == "Aries") || (signo == "ARIES") || (signo == "aries"))){
 //Ciclo for para numeros primos
 
 //debugger
-let primo = parseInt(prompt("Ingrese un numero para saber si es primo"));
+/*let primo = parseInt(prompt("Ingrese un numero para saber si es primo"));
 
 let esPrimo = true;
 
@@ -90,3 +90,72 @@ if(esPrimo){
 }else{
     alert("El numero "+primo+" no es primo");
 }
+*/
+
+//ciclo while para horas trabajadas
+
+let nombre = prompt("Ingrese su nombre: ");
+let diasHoras= [lunes=0, martes=0, miercoles=0, jueves=0, viernes=0, sabado=0, domingo=0];
+let dias = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"];
+let i = 0;
+let promedio;
+
+while(i <= diasHoras.length - 1){
+    diasHoras[i] = parseInt(prompt("ingrese las horas que trabajo el dia "+dias[i]+": "));
+    i++
+}
+
+for(let i = 0; i <= dias.length -1; i++){
+    console.log("El dia "+dias[i]+" trabajo "+diasHoras[i]+" horas");
+}
+
+let preguntaDia = prompt("Ingresa el dia del cual quieres saber las horas trabajadas(ESC para salir)");
+
+switch(preguntaDia){
+    case "Lunes":
+    case "lunes":
+    case "LUNES":
+        alert("Las horas trabajadas el dia lunes fueron de "+diasHoras[0]+"hs");
+        break;
+    case "Martes":
+    case "martes":
+    case "MARTES":
+        alert("Las horas trabajadas el dia martes fueron de "+diasHoras[1]+"hs");
+        break;
+    case "Miercoles":
+    case "miercoles":
+    case "MIERCOLES":
+        alert("Las horas trabajadas el dia miercoles fueron de "+diasHoras[2]+"hs");
+        break;
+    case "Jueves":
+    case "jueves":
+    case "JUEVES":
+        alert("Las horas trabajadas el dia jueves fueron de "+diasHoras[3]+"hs");
+        break;
+    case "Viernes":
+    case "viernes":
+    case "VIERNES":
+        alert("Las horas trabajadas el dia viernes fueron de "+diasHoras[4]+"hs");
+        break;
+    case "Sabado":
+    case "sabado":
+    case "SABADO":
+        alert("Las horas trabajadas el dia sabado fueron de "+diasHoras[5]+"hs");
+        break;
+    case "Domingo":
+    case "domingo":
+    case "DOMINGO":
+        alert("Las horas trabajadas el dia domingo fueron de "+diasHoras[6]+"hs");
+        break;
+    default:
+        alert("Adios! Hasta la proxima");
+        break;
+
+}
+
+
+
+
+
+
+
