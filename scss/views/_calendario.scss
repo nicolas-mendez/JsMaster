@@ -1,0 +1,27 @@
+@import "../base/variables";
+@import "../utilities/breakpoints";
+
+.mainCalendar{
+    width: 600px;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    .calendar{
+        list-style: none;
+        display: grid;
+        
+        grid-template-columns: repeat(7, 1fr);
+        padding: 0px;
+
+        .diaUno{
+            grid-column-start: 7;
+        }
+
+        .diaNombre{
+            background-color: aquamarine;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+}
+}

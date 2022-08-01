@@ -93,7 +93,7 @@ if(esPrimo){
 */
 
 //ciclo while para horas trabajadas
-
+/*
 let nombre = prompt("Ingrese su nombre: ");
 let diasHoras= [lunes=0, martes=0, miercoles=0, jueves=0, viernes=0, sabado=0, domingo=0];
 let dias = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"];
@@ -151,11 +151,47 @@ switch(preguntaDia){
         alert("Adios! Hasta la proxima");
         break;
 
+}*/
+
+//Funcion de fecha de nacimiento
+/*
+const nacimientoIf =() => {
+    let ingresarNacimiento = prompt("Quieres ingresar tu fecha de nacimento?");
+
+    if(ingresarNacimiento === "si"){
+        let diaNacimiento = parseInt(prompt("Ingresa el dia en el que naciste: "));
+        let mesNacimiento = prompt("Ingresa el mes en cual naciste: ");
+        let anioNacimiento = parseInt(prompt("Ingresa el año en el que naciste(Ej: 1996): "));
+        console.log("Tu fecha de nacimento es el "+diaNacimiento+" de "+mesNacimiento+" del año "+anioNacimiento);
+    }else{
+        console.log("Que tengas un buen dia!");
+    }
 }
 
+nacimientoIf();
 
 
+//Funcion de fecha de naciemiento con objeto
 
+function nacimiento(){
+    class Nacimiento{
+        constructor(dia, mes, anio){
+            this.dia = dia;
+            this.mes = mes;
+            this.anio = anio;
+        }
+        mostrarFecha(){
+            console.log("Naciste el dia "+this.dia+" de "+this.mes+" del año "+this.anio);
+        }
+    }
+    let diaNacimiento = parseInt(prompt("En que dia naciste?"));
+    let mesNacimiento = prompt("En que mes naciste?");
+    let anioNacimiento = parseInt(prompt("En que año naciste?"));
 
+    const nuevoNacimiento = new Nacimiento (diaNacimiento, mesNacimiento, anioNacimiento);
+    nuevoNacimiento.mostrarFecha();
+}
 
+nacimiento();
 
+*/
