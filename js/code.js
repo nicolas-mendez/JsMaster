@@ -154,7 +154,7 @@ switch(preguntaDia){
 }*/
 
 //Funcion de fecha de nacimiento
-/*
+
 const nacimientoIf =() => {
     let ingresarNacimiento = prompt("Quieres ingresar tu fecha de nacimento?");
 
@@ -194,4 +194,3 @@ function nacimiento(){
 
 nacimiento();
 
-*/
