@@ -1,31 +1,47 @@
 class Nacimiento {
-    constructor(nombre,dia,mes,anio){
+    constructor(nombre, dia, mes, anio) {
         this.nombre = nombre;
         this.dia = parseInt(dia);
         this.mes = mes;
         this.anio = parseInt(anio);
     }
-    mostrarNacimiento(){
-        console.log("Usted nacio el dia "+this.dia+" del mes "+this.mes+" del año "+this.anio);
+    mostrarNacimiento() {
+        console.log("Usted nacio el dia " + this.dia + " del mes " + this.mes + " del año " + this.anio);
     }
 }
 
-function crearNacimiento(){
+function crearNacimiento() {
     let nombreNacimiento = prompt("Cual es tu nombre?");
     let diaNacimiento = parseInt(prompt("En que dia naciste?"));
     let mesNacimiento = prompt("Cual es el mes en el que naciste?");
     let anioNacimiento = parseInt(prompt("Y en que año naciste?"));
-    let cumpleanios = new Nacimiento(nombreNacimiento,diaNacimiento,mesNacimiento,anioNacimiento);
+    let cumpleanios = new Nacimiento(nombreNacimiento, diaNacimiento, mesNacimiento, anioNacimiento);
     return cumpleanios;
 }
-const fechaNacimiento =[];
+const fechaNacimiento = [];
 
-function sumarNacimiento(cumpleanios,arr){
+function sumarNacimiento(cumpleanios, arr) {
     arr.push(cumpleanios);
 }
 let cantNacimiento = parseInt(prompt("Cuantos nacimientos quieres añadir?"));
-while(fechaNacimiento.length <cantNacimiento){
-    sumarNacimiento(crearNacimiento(),fechaNacimiento);
+while (fechaNacimiento.length < cantNacimiento) {
+    sumarNacimiento(crearNacimiento(), fechaNacimiento);
 }
+
+console.table(fechaNacimiento);
+let pregEliminar = prompt("Quiere eliminar alguna fecha de nacimiento?").toLowerCase();
+
+if (pregEliminar == "si") {
+    let nombre = prompt("Ingresa el nombre de la persona que quieras borrar su nacimiento");
+    for (const fecha of fechaNacimiento) {
+        if (fecha.nombre == nombre) {
+            let fechaEliminar = fechaNacimiento.indexOf(fecha);
+            delete fechaNacimiento[fechaEliminar];
+        }
+    }
+}else{
+    alert("Gracias vuelva pronto!");
+}
+
 
 console.table(fechaNacimiento);
