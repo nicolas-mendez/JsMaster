@@ -18,49 +18,28 @@
 </head>
 
 <body>
-    <main class="mainCalendar">
-        <h1>Enero 2022</h1>
-        <ol class="calendar">
-            <li class="diaNombre">Domingo</li>
-            <li class="diaNombre">Lunes</li>
-            <li class="diaNombre">Martes</li>
-            <li class="diaNombre">Miercoles</li>
-            <li class="diaNombre">Jueves</li>
-            <li class="diaNombre">Viernes</li>
-            <li class="diaNombre">Sabado</li>
-            <li class="diaUno">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
-            <li>11</li>
-            <li>12</li>
-            <li>13</li>
-            <li>14</li>
-            <li>15</li>
-            <li>16</li>
-            <li>17</li>
-            <li>18</li>
-            <li>19</li>
-            <li>20</li>
-            <li>21</li>
-            <li>22</li>
-            <li>23</li>
-            <li>24</li>
-            <li>25</li>
-            <li>26</li>
-            <li>27</li>
-            <li>28</li>
-            <li>29</li>
-            <li>30</li>
-            <li>31</li>
-        </ol>
-    </main>
+  <main>
+    <h1 class="titulo">Agenda y calendario</h1>
+    <section class="calendario">
+        <div class="calendario__info">
+            <div class="calendario__prev" id="prev-mes">&#11013;</div>
+            <div class="calendario__mes" id="mes"></div>
+            <div class="calendario__anio" id="anio"></div>
+            <div class="calendario__next" id="next-mes">&#10145;</div>
+        </div>
+        <div class="calendario__semana">
+            <div class="calendario__dia calendario__item">Lunes</div>
+            <div class="calendario__dia calendario__item">Martes</div>
+            <div class="calendario__dia calendario__item">Miércoles</div>
+            <div class="calendario__dia calendario__item">Jueves</div>
+            <div class="calendario__dia calendario__item">Viernes</div>
+            <div class="calendario__dia calendario__item">Sábado</div>
+            <div class="calendario__dia calendario__item">Domingo</div>
+        </div>
+        <div class="calendar__fechas" id="fechas"></div>
+    </section>
+
+  </main>
 
     <!-- BOOTSTRAP -->
 

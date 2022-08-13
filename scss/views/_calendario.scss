@@ -1,27 +1,56 @@
 @import "../base/variables";
 @import "../utilities/breakpoints";
 
-.mainCalendar{
-    width: 600px;
+.titulo{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #000;
     text-align: center;
-    margin: auto;
-    padding: 10px;
-    .calendar{
-        list-style: none;
+}
+
+.calendario{
+    background-color: #f3eeff ;
+    width: 90%;
+    margin: 1em auto;
+    padding: .5em 0;
+
+    &__info{
+        display: flex;
+        align-items: center;
+        padding: 0 2em; 
+        font-size: 1.1;
+    }
+    
+    &__prev, &__next{
+        color: #000 ;
+        cursor: pointer;
+        font-size: 1.8em;
+    }
+
+    &__prev{
+        margin-right: auto;
+    }
+    &__next{
+        margin-left: auto;
+    }
+
+    &__semana{
         display: grid;
-        
-        grid-template-columns: repeat(7, 1fr);
-        padding: 0px;
+        grid-template-columns: repeat(7,1fr);
+        grid-gap: 10px;
+    }
 
-        .diaUno{
-            grid-column-start: 7;
-        }
+    &__mes, &__anio{
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.4;
+        font-weight: 600;
+        padding: .5em 1em;
+    }
 
-        .diaNombre{
-            background-color: aquamarine;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-        }
-
+    &__item{
+        text-align: center;
+        line-height: 2.5;
+    }
 }
-}
+
+

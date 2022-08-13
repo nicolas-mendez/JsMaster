@@ -1,4 +1,4 @@
-class Nacimiento {
+/*class Nacimiento {
     constructor(nombre, dia, mes, anio) {
         this.nombre = nombre;
         this.dia = parseInt(dia);
@@ -44,4 +44,54 @@ if (pregEliminar == "si") {
 }
 
 
-console.table(fechaNacimiento);
+console.table(fechaNacimiento);*/
+
+const mesNombres = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+let fechaActual = new Date();
+let diaActual = fechaActual.getDate();
+let mesActual = fechaActual.getMonth();
+let anioActual = fechaActual.getFullYear();
+
+let fechas = document.getElementById('fechas');
+let mes = document.getElementById('mes');
+let anio = document.getElementById('anio');
+
+let prevMesDOM = document.getElementById('prev-mes');
+let nextMesDOM = document.getElementById('next-mes');
+
+mes.textContent = mesNombres[mesActual];
+anio.textContent = anioActual.toString();
+
+function escribirMes(mes){
+
+}
+
+function diasTotal(mes){
+
+}
+
+function esBisiesto(){
+    if((anioActual % 100 !==0) && (anioActual % 4 ===0) || (anioActual % 400 === 0)){
+        return true;
+    }
+
+    return false;
+}
+
+function inicioSemana(){
+    let inicio = new Date(anioActual, mesActual, 1);
+    return ((inicio.getDay()-1) === -1) ? 6 : inicio.getDay()-1;
+}
+
+function prevMes(){
+
+}
+
+function nextMes(){
+    
+}
+
+function nuevaFecha(){
+
+}
