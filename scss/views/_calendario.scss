@@ -18,38 +18,61 @@
         display: flex;
         align-items: center;
         padding: 0 2em; 
-        font-size: 1.1;
+        font-size: 1.1em;
     }
     
     &__prev, &__next{
+        padding: 0 5px;
         color: #000 ;
         cursor: pointer;
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     &__prev{
         margin-right: auto;
+        font-size: 3em;
     }
     &__next{
         margin-left: auto;
+        font-size: 3em;
     }
 
-    &__semana{
+    &__semana, &__fechas{
         display: grid;
         grid-template-columns: repeat(7,1fr);
+        grid-auto-rows: 5em;
         grid-gap: 10px;
     }
 
     &__mes, &__anio{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-family: 'Poppins', sans-serif;
-        font-size: 1.4;
+        font-size: 1.6em;
         font-weight: 600;
         padding: .5em 1em;
     }
-
+    &__dia{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     &__item{
         text-align: center;
         line-height: 2.5;
+    }
+
+    &__hoy{
+        background: #96ead7;
+        width: 30%;
+        border-bottom-right-radius: 50%;
+        border-top-left-radius: 50%;
+        margin: auto;
+    }
+
+    &__dias-pasado{
+        opacity: .35;
     }
 }
 

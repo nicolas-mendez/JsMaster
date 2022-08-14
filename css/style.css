@@ -28,24 +28,50 @@ body {
     display: flex;
     align-items: center;
     padding: 0 2em;
-    font-size: 1.1; }
+    font-size: 1.1em; }
   .calendario__prev, .calendario__next {
+    padding: 0 5px;
     color: #000;
     cursor: pointer;
-    font-size: 1.8em; }
+    font-size: 1.6em; }
   .calendario__prev {
-    margin-right: auto; }
+    margin-right: auto;
+    font-size: 3em; }
   .calendario__next {
-    margin-left: auto; }
-  .calendario__semana {
+    margin-left: auto;
+    font-size: 3em; }
+  .calendario__semana, .calendario__fechas {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 5em;
     grid-gap: 10px; }
   .calendario__mes, .calendario__anio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.4;
+    font-size: 1.6em;
     font-weight: 600;
     padding: .5em 1em; }
+  .calendario__dia {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
   .calendario__item {
     text-align: center;
     line-height: 2.5; }
+  .calendario__hoy {
+    background: #96ead7;
+    width: 30%;
+    border-bottom-right-radius: 50%;
+    border-top-left-radius: 50%;
+    margin: auto; }
+  .calendario__dias-pasado {
+    opacity: .35; }
+
+.modulo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0; }

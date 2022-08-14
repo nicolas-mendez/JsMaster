@@ -63,12 +63,38 @@ let nextMesDOM = document.getElementById('next-mes');
 mes.textContent = mesNombres[mesActual];
 anio.textContent = anioActual.toString();
 
+prevMesDOM.addEventListener('click', ()=>prevMes());
+nextMesDOM.addEventListener('click', ()=>nextMes());
+
+escribirMes(mesActual);
+
 function escribirMes(mes){
 
+    for(let i = inicioSemana(); i>0; i--){
+        fechas.innerHTML += `<a class="calendario__dia calendario__item calendario__dias-pasado">${diasTotal(mesActual-1)-(i-1)}</a>`;
+    }
+
+    for(let i = 1; i<=diasTotal(mes); i++){
+        if(i === diaActual){
+            fechas.innerHTML += `<a class="calendario__dia calendario__item calendario__hoy">${i}</a>`;
+        }else{
+            fechas.innerHTML += `<a class="calendario__dia calendario__item">${i}</a>`;
+        }
+        
+    }
 }
 
 function diasTotal(mes){
-
+    if(mes === -1){
+        mes = 11;
+    }
+    if((mes == 0) || (mes == 2) || (mes == 4) || (mes == 6) || (mes == 7) || (mes == 9) || (mes == 11)){
+        return 31;
+    }else if((mes == 3) || (mes == 5) || (mes == 8) || (mes == 10)){
+        return 30;
+    }else{
+        return esBisiesto() ? 29:28;
+    }
 }
 
 function esBisiesto(){
@@ -85,13 +111,31 @@ function inicioSemana(){
 }
 
 function prevMes(){
+    if(mesActual !==0){
+        mesActual--;
+    }else{
+        mesActual = 11;
+        anioActual--;
+    }
 
+    nuevaFecha();
 }
 
 function nextMes(){
-    
+    if(mesActual !==11){
+        mesActual++;
+    }else{
+        mesActual = 0;
+        anioActual++;
+    }
+
+    nuevaFecha();
 }
 
 function nuevaFecha(){
-
+    fechaActual.setFullYear(anioActual,mesActual,diaActual);
+    mes.textContent = mesNombres[mesActual];
+    anio.textContent = anioActual,toString();
+    fechas.textContent = '';
+    escribirMes(mesActual);
 }
