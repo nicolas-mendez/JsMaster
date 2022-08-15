@@ -9,10 +9,11 @@
 }
 
 .calendario{
-    background-color: #f3eeff ;
+    background: linear-gradient(to left, #e1f7d5,#f1cbff); ;
     width: 90%;
     margin: 1em auto;
-    padding: .5em 0;
+    padding: 1em 1em 4em 1em;
+    border-radius: 10%;
 
     &__info{
         display: flex;
@@ -57,6 +58,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
+        color: #000;
+        border: none;
+        background: none;
     }
     &__item{
         text-align: center;

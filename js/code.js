@@ -48,6 +48,7 @@ console.table(fechaNacimiento);*/
 
 const mesNombres = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
+
 let fechaActual = new Date();
 let diaActual = fechaActual.getDate();
 let mesActual = fechaActual.getMonth();
@@ -60,25 +61,40 @@ let anio = document.getElementById('anio');
 let prevMesDOM = document.getElementById('prev-mes');
 let nextMesDOM = document.getElementById('next-mes');
 
+const abrirModulo = document.querySelector('.abrir');
+const modulo = document.querySelector('.modulo');
+const cerrarModulo = document.querySelector('.modulo__cerrar');
+
 mes.textContent = mesNombres[mesActual];
 anio.textContent = anioActual.toString();
 
+abrirModulo.addEventListener('click', (e)=>{
+    e.preventDefault();
+    modulo.classList.add('modulo--show');
+});
+
+cerrarModulo.addEventListener('click', (e)=>{
+    e.preventDefault();
+    modulo.classList.remove('modulo--show');
+});
+
 prevMesDOM.addEventListener('click', ()=>prevMes());
 nextMesDOM.addEventListener('click', ()=>nextMes());
+
 
 escribirMes(mesActual);
 
 function escribirMes(mes){
 
     for(let i = inicioSemana(); i>0; i--){
-        fechas.innerHTML += `<a class="calendario__dia calendario__item calendario__dias-pasado">${diasTotal(mesActual-1)-(i-1)}</a>`;
+        fechas.innerHTML += `<button class="calendario__dia calendario__item calendario__dias-pasado">${diasTotal(mesActual-1)-(i-1)}</button>`;
     }
 
     for(let i = 1; i<=diasTotal(mes); i++){
         if(i === diaActual){
-            fechas.innerHTML += `<a class="calendario__dia calendario__item calendario__hoy">${i}</a>`;
+            fechas.innerHTML += `<button class="calendario__dia calendario__item calendario__hoy">${i}</button>`;
         }else{
-            fechas.innerHTML += `<a class="calendario__dia calendario__item">${i}</a>`;
+            fechas.innerHTML += `<button class="calendario__dia calendario__item">${i}</button>`;
         }
         
     }

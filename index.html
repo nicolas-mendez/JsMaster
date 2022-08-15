@@ -16,7 +16,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Calendario</title>
 </head>
-    
+  
 <body>
   <main>
     <h1 class="titulo">Agenda y calendario</h1>
@@ -44,29 +44,36 @@
 
     <section class="modulo">
         <div class="modulo__container">
+            <img src="./img/CalendarioModulo.png" class="modulo__img" alt="calendario para el modulo">
             <h2 class="modulo__titulo">Ingresa la fecha de nacimiento.
             </h2>
             <form class="modulo__form">
                 <div class="modulo__datos">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Nombre: </label>
                     <input type="text" class="modulo__datos-control" placeholder="Ej: Nicolas">
                 </div>
                 <div class="modulo__datos">
-                    <label for="dia">Día</label>
+                    <label for="dia">Día: </label>
                     <input type="number" class="modulo__datos-control" placeholder="Ej: 15">
                 </div>
                 <div class="modulo__datos">
-                    <label for="mes">Mes</label>
+                    <label for="mes">Mes: </label>
                     <input type="text" class="modulo__datos-control" placeholder="Ej: Mayo">
                 </div>
                 <div class="modulo__datos">
-                    <label for="anio">Año</label>
+                    <label for="anio">Año: </label>
                     <input type="numbrer" class="modulo__datos-control" placeholder="Ej: 1996">
                 </div>
             </form>
-            <button class="modulo__cerrar">
-                cerrar modal
-            </button>
+            <div class="modulo__buttons">
+                <button class="modulo__cerrar">
+                Cerrar
+                </button>
+                <button class="modulo__cerrar" id="guardar">
+                Guarder y Cerrar
+                </button>
+            </div>
+            
         </div>
     </section>
 

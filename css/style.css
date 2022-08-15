@@ -20,10 +20,11 @@ body {
   text-align: center; }
 
 .calendario {
-  background-color: #f3eeff;
+  background: linear-gradient(to left, #e1f7d5, #f1cbff);
   width: 90%;
   margin: 1em auto;
-  padding: .5em 0; }
+  padding: 1em 1em 4em 1em;
+  border-radius: 10%; }
   .calendario__info {
     display: flex;
     align-items: center;
@@ -56,7 +57,11 @@ body {
   .calendario__dia {
     display: flex;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    background: none; }
   .calendario__item {
     text-align: center;
     line-height: 2.5; }
@@ -74,4 +79,50 @@ body {
   top: 0;
   right: 0;
   left: 0;
-  bottom: 0; }
+  bottom: 0;
+  background-color: #111111bd;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s; }
+  .modulo__container {
+    margin: auto;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    background-color: #d2e0f2;
+    border-radius: 10%;
+    padding: 3em 2.5em;
+    display: grid;
+    gap: 1em;
+    place-items: center;
+    grid-auto-columns: 100%; }
+  .modulo__titulo {
+    font-size: 2em; }
+  .modulo__form {
+    margin-bottom: 1em; }
+  .modulo__img {
+    width: 90%;
+    max-width: 450px; }
+  .modulo__buttons {
+    display: flex; }
+  .modulo__cerrar {
+    text-decoration: none;
+    color: #000;
+    background-color: #d6ffd9;
+    margin: 0 1em;
+    padding: .5em 1.5em;
+    border: 1px solid;
+    border-radius: 10%;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    transition: background-color .3s; }
+    .modulo__cerrar:hover {
+      background-color: #e3fffb; }
+
+.modulo--show {
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity .6s; }
