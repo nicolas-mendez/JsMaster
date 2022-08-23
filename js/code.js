@@ -45,7 +45,7 @@ if (pregEliminar == "si") {
 
 
 console.table(fechaNacimiento);*/
-
+/*
 const mesNombres = ["Enero","Febero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
 
@@ -154,4 +154,73 @@ function nuevaFecha(){
     anio.textContent = anioActual,toString();
     fechas.textContent = '';
     escribirMes(mesActual);
+}*/
+
+let nav = 0;
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+const calendar = document.getElementById('calendar');
+const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+
+function cargar() {
+    const dt = new Date();
+
+    if (nav !== 0) {
+        dt.setMonth(new Date().getMonth() + nav);
+    }
+
+    const day = dt.getDate();
+    const month = dt.getMonth();
+    const year = dt.getFullYear();
+
+    const firstDayMonth = new Date(year, month, 1);
+    //cantidad de dias del mes
+    const daysMonth = new Date(year, month + 1, 0).getDate();
+    // fecha en string
+    const dateString = firstDayMonth.toLocaleDateString('es-ar', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+    });
+    const completeDays = weekdays.indexOf(dateString.split(', ')[0]);
+    //mostrar mes y año
+    document.getElementById('monthDisplay').innerText = 
+    `${dt.toLocaleDateString('es-ar', { month: 'long' })} ${year}`;
+
+    calendar.innerHTML = '';
+
+    //completa la cantidad de dias
+    for (let i = 1; i <= completeDays + daysMonth; i++) {
+        const dayPlace = document.createElement('div');
+        dayPlace.classList.add('day');
+
+        if (i > completeDays) {
+            dayPlace.innerText = i - completeDays;
+
+            dayPlace.addEventListener('click', () => console.log('click'));
+
+        } else {
+            dayPlace.classList.add('fill');
+        }
+
+        calendar.appendChild(dayPlace);
+    }
 }
+
+//botones de anterior y siguiente mes
+function initButtons() {
+    document.getElementById('nextButton').addEventListener('click', () => {
+        nav++;
+        cargar();
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+        nav--;
+        cargar();
+    });
+}
+
+initButtons();
+cargar();

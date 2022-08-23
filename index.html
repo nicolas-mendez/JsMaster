@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-    content="Un organizador donde podras guardar todos tus recuerdos y momentos para tenerlos cerca siempre!">
-  <meta name="keywords"
-    content="calendario, calendario interactivo, fotos, imagenes, notas, galeria, momentos, recuerdos">
+        content="Un organizador donde podras guardar todos tus recuerdos y momentos para tenerlos cerca siempre!">
+    <meta name="keywords"
+        content="calendario, calendario interactivo, fotos, imagenes, notas, galeria, momentos, recuerdos">
     <script src="https://kit.fontawesome.com/dde6f6e95e.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -16,74 +16,49 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Calendario</title>
 </head>
-  
+
 <body>
-  <main>
-    <h1 class="titulo">Agenda y calendario</h1>
-    <section class="calendario">
-        <div class="calendario__info">
-            <div class="calendario__prev" id="prev-mes">&#11013;</div>
-            <div class="calendario__mes" id="mes"></div>
-            <div class="calendario__anio" id="anio"></div>
-            <div class="calendario__next" id="next-mes">&#10145;</div>
-        </div>
-        <div class="calendario__semana">
-            <div class="calendario__dia calendario__item">Lunes</div>
-            <div class="calendario__dia calendario__item">Martes</div>
-            <div class="calendario__dia calendario__item">Miércoles</div>
-            <div class="calendario__dia calendario__item">Jueves</div>
-            <div class="calendario__dia calendario__item">Viernes</div>
-            <div class="calendario__dia calendario__item">Sábado</div>
-            <div class="calendario__dia calendario__item">Domingo</div>
-        </div>
-        <div class="calendario__fechas" id="fechas"></div> 
-        
-        <button class="abrir">Abrir modal</button>
-
-    </section>
-
-    <section class="modulo">
-        <div class="modulo__container">
-            <img src="./img/CalendarioModulo.png" class="modulo__img" alt="calendario para el modulo">
-            <h2 class="modulo__titulo">Ingresa la fecha de nacimiento.
-            </h2>
-            <form class="modulo__form">
-                <div class="modulo__datos">
-                    <label for="nombre">Nombre: </label>
-                    <input type="text" class="modulo__datos-control" placeholder="Ej: Nicolas">
-                </div>
-                <div class="modulo__datos">
-                    <label for="dia">Día: </label>
-                    <input type="number" class="modulo__datos-control" placeholder="Ej: 15">
-                </div>
-                <div class="modulo__datos">
-                    <label for="mes">Mes: </label>
-                    <input type="text" class="modulo__datos-control" placeholder="Ej: Mayo">
-                </div>
-                <div class="modulo__datos">
-                    <label for="anio">Año: </label>
-                    <input type="numbrer" class="modulo__datos-control" placeholder="Ej: 1996">
-                </div>
-            </form>
-            <div class="modulo__buttons">
-                <button class="modulo__cerrar">
-                Cerrar
-                </button>
-                <button class="modulo__cerrar" id="guardar">
-                Guarder y Cerrar
-                </button>
+    <div id="container" class="container">
+        <div id="header" class="header">
+            <div id="monthDisplay"></div>
+            <div>
+                <button id="backButton" class="button">Ant.</button>
+                <button id="nextButton" class="button">Sig.</button>
             </div>
-            
         </div>
-    </section>
 
-  </main>
+        <div id="weekdays" class="weekdays">
+            <div class="days">Domingo</div>
+            <div class="days">Lunes</div>
+            <div class="days">Martes</div>
+            <div class="days">Miercoles</div>
+            <div class="days">Jueves</div>
+            <div class="days">Viernes</div>
+            <div class="days">Sabado</div>
+        </div>
 
-    <!-- BOOTSTRAP -->
+        <div id="calendar" class="calendar"></div>
+    </div>
+<!-- 
+    <div id="newEventModal">
+        <h2>New Event</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+        <input id="eventTitleInput" placeholder="Event Title" />
+
+        <button id="saveButton" class="button">Save</button>
+        <button id="cancelButton" class="button">Cancel</button>
+    </div>
+
+    <div id="deleteEventModal">
+        <h2>Event</h2>
+
+        <p id="eventText"></p>
+
+        <button id="deleteButton" class="button">Delete</button>
+        <button id="closeButton" class="button">Close</button>
+    </div>
+
+    <div id="modalBackDrop"></div> -->
 
     <!-- AOS Animate -->
 

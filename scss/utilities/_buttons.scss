@@ -1,0 +1,29 @@
+@import "../base/variables";
+@import "../utilities/breakpoints";
+
+.button{
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.header{
+    
+    .button{
+        width: 60px;
+        background-color:#92a1d1;
+    }
+}
+
+#cancelButton, #deleteButton {
+    background-color: #d36c6c;
+  }
+
+#saveButton, #closeButton {
+    background-color: #92a1d1;
+  }
