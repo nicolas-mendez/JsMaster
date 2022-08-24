@@ -155,76 +155,137 @@ function nuevaFecha(){
     fechas.textContent = '';
     escribirMes(mesActual);
 }*/
-
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 const calendar = document.getElementById('calendar');
-const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+const newEventModal = document.getElementById('newEventModal');
+const deleteEventModal = document.getElementById('deleteEventModal');
+const backDrop = document.getElementById('modalBackDrop');
+const eventTitleInput = document.getElementById('eventTitleInput');
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-function cargar() {
-    const dt = new Date();
+function openModal(date) {
+  clicked = date;
 
-    if (nav !== 0) {
-        dt.setMonth(new Date().getMonth() + nav);
-    }
+  const eventForDay = events.find(e => e.date === clicked);
 
-    const day = dt.getDate();
-    const month = dt.getMonth();
-    const year = dt.getFullYear();
+  if (eventForDay) {
+    document.getElementById('eventText').innerText = eventForDay.title;
+    deleteEventModal.style.display = 'block';
+  } else {
+    newEventModal.style.display = 'block';
+  }
 
-    const firstDayMonth = new Date(year, month, 1);
-    //cantidad de dias del mes
-    const daysMonth = new Date(year, month + 1, 0).getDate();
-    // fecha en string
-    const dateString = firstDayMonth.toLocaleDateString('es-ar', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-    });
-    const completeDays = weekdays.indexOf(dateString.split(', ')[0]);
-    //mostrar mes y año
-    document.getElementById('monthDisplay').innerText = 
-    `${dt.toLocaleDateString('es-ar', { month: 'long' })} ${year}`;
-
-    calendar.innerHTML = '';
-
-    //completa la cantidad de dias
-    for (let i = -1; i <= completeDays + daysMonth; i++) {
-        const dayPlace = document.createElement('div');
-        dayPlace.classList.add('day');
-
-        if (i > completeDays) {
-            dayPlace.innerText = i - completeDays;
-
-            dayPlace.addEventListener('click', () => console.log('click'));
-
-            if (i - completeDays === day && nav === 0) {
-                dayPlace.id = 'currentDay';
-              }
-
-        } else {
-            dayPlace.classList.add('fill');
-        }
-
-        calendar.appendChild(dayPlace);
-    }
+  backDrop.style.display = 'block';
 }
 
-//botones de anterior y siguiente mes
-function initButtons() {
-    document.getElementById('nextButton').addEventListener('click', () => {
-        nav++;
-        cargar();
+function load() {
+  const dt = new Date();
+
+  if (nav !== 0) {
+    dt.setMonth(new Date().getMonth() + nav);
+  }
+
+  const day = dt.getDate();
+  const month = dt.getMonth();
+  const year = dt.getFullYear();
+
+  const firstDayOfMonth = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+  const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+  const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+
+  document.getElementById('monthDisplay').innerText = 
+    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+
+  calendar.innerHTML = '';
+
+  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+    const daySquare = document.createElement('div');
+    daySquare.classList.add('day');
+
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+
+    if (i > paddingDays) {
+      daySquare.innerText = i - paddingDays;
+      const eventForDay = events.find(e => e.date === dayString);
+
+      if (i - paddingDays === day && nav === 0) {
+        daySquare.id = 'currentDay';
+      }
+
+      if (eventForDay) {
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.innerText = eventForDay.title;
+        daySquare.appendChild(eventDiv);
+      }
+
+      daySquare.addEventListener('click', () => openModal(dayString));
+    } else {
+      daySquare.classList.add('padding');
+    }
+
+    calendar.appendChild(daySquare); 
+  }
+}
+
+function closeModal() {
+  eventTitleInput.classList.remove('error');
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+  clicked = null;
+  load();
+}
+
+function saveEvent() {
+  if (eventTitleInput.value) {
+    eventTitleInput.classList.remove('error');
+
+    events.push({
+      date: clicked,
+      title: eventTitleInput.value,
     });
 
-    document.getElementById('backButton').addEventListener('click', () => {
-        nav--;
-        cargar();
-    });
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  } else {
+    eventTitleInput.classList.add('error');
+  }
+}
+
+function deleteEvent() {
+  events = events.filter(e => e.date !== clicked);
+  localStorage.setItem('events', JSON.stringify(events));
+  closeModal();
+}
+
+function initButtons() {
+  document.getElementById('nextButton').addEventListener('click', () => {
+    nav++;
+    load();
+  });
+
+  document.getElementById('backButton').addEventListener('click', () => {
+    nav--;
+    load();
+  });
+
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
 }
 
 initButtons();
-cargar();
+load();
