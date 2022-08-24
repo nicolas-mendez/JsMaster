@@ -192,7 +192,7 @@ function cargar() {
     calendar.innerHTML = '';
 
     //completa la cantidad de dias
-    for (let i = 1; i <= completeDays + daysMonth; i++) {
+    for (let i = -1; i <= completeDays + daysMonth; i++) {
         const dayPlace = document.createElement('div');
         dayPlace.classList.add('day');
 
@@ -200,6 +200,10 @@ function cargar() {
             dayPlace.innerText = i - completeDays;
 
             dayPlace.addEventListener('click', () => console.log('click'));
+
+            if (i - completeDays === day && nav === 0) {
+                dayPlace.id = 'currentDay';
+              }
 
         } else {
             dayPlace.classList.add('fill');
