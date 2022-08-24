@@ -9,11 +9,32 @@ font-family: 'Poppins', sans-serif; titulos
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif; }
 
+.dark {
+  background-color: #000;
+  color: #fff; }
+
+.ligth {
+  background-color: #f8f8fa;
+  color: #000; }
+
 body {
   display: flex;
-  margin-top: 5rem;
-  justify-content: center;
-  background-color: #f8f8fa; }
+  flex-direction: column;
+  padding: 5rem;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #3b444b; }
+  body .buttonMode {
+    width: 100px;
+    height: 70px;
+    margin: 10px;
+    padding: 15px;
+    text-decoration: none;
+    border: #000 1px solid;
+    border-radius: 15%;
+    background-color: #f8f8fa;
+    color: #000; }
   body button {
     width: 75px;
     cursor: pointer;
@@ -22,23 +43,27 @@ body {
     outline: none;
     padding: 5px;
     border-radius: 5px;
-    color: white; }
+    color: #fff; }
   body #container {
     width: 770px; }
     body #container #header {
       padding: 10px;
-      color: #d36c6c;
+      color: #adafaa;
       font-size: 26px;
       font-family: sans-serif;
       display: flex;
       justify-content: space-between; }
+      body #container #header #monthDisplay {
+        padding: 10px;
+        border: #eeeeee 1px solid;
+        border-radius: 10%; }
       body #container #header button {
-        background-color: #92a1d1; }
+        background-color: #666d70; }
     body #container #weekdays {
       width: 100%;
       display: flex;
       justify-content: space-between;
-      color: #247BA0; }
+      color: #eeeeee; }
       body #container #weekdays div {
         width: 100px;
         padding: 10px; }
@@ -53,25 +78,25 @@ body {
         height: 100px;
         cursor: pointer;
         box-sizing: border-box;
-        background-color: white;
+        background-color: #999999;
         margin: 5px;
         box-shadow: 0px 0px 3px #CBD4C2;
         display: flex;
         flex-direction: column;
         justify-content: space-between; }
       body #container #calendar .day:hover {
-        background-color: #e8faed; }
+        background-color: #c0c2ce; }
       body #container #calendar .day + #currentDay {
-        background-color: #e8f4fa; }
+        background-color: #333333; }
       body #container #calendar .padding {
         cursor: default !important;
-        background-color: #FFFCFF !important;
+        background-color: #555555 !important;
         box-shadow: none !important; }
     body #container .event {
-      font-size: 10px;
+      font-size: 12px;
       padding: 3px;
-      background-color: #58bae4;
-      color: white;
+      background-color: #708090;
+      color: #fff;
       border-radius: 5px;
       max-height: 55px;
       overflow: hidden; }
@@ -80,7 +105,7 @@ body {
     display: none;
     z-index: 20;
     padding: 25px;
-    background-color: #e8f4fa;
+    background-color: #666d70;
     box-shadow: 0px 0px 3px black;
     border-radius: 5px;
     width: 350px;
@@ -89,16 +114,24 @@ body {
     position: absolute;
     font-family: sans-serif; }
   body #newEventModal h2 {
+    color: #adafaa;
     padding: 10px 10px 10px 0; }
   body #newEventModal input {
-    font-size: 1rem; }
+    font-size: 1rem;
+    background-color: #c0c2ce; }
   body #deleteEventModal h2 {
+    color: #adafaa;
     padding: 10px 10px 10px 0; }
   body #deleteEventModal input {
-    font-size: 1rem; }
+    font-size: 1rem;
+    background-color: #c0c2ce; }
   body #deleteEventModal p {
-    padding: 10px 10px 10px 0;
-    font-size: 1rem; }
+    padding: 10px 15px 10px 15px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background-color: #c0c2ce;
+    border: #c0c2ce 1px solid;
+    border-radius: 5%; }
   body #eventTitleInput {
     padding: 10px;
     width: 100%;
