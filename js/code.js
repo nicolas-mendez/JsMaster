@@ -138,12 +138,15 @@ function saveEvent() {
     closeModal();
 
     Toastify({
-
-      text: "Guardaste un evento",
+      text: "Guardaste un Evento!",
+      duration: 3000,
+      gravity: 'top',
       position: 'right',
-      duration: 3000
-      
-      }).showToast();
+      className:'tostada',
+      style: {
+        background: 'linear-gradient(to right, #999999, #333333)'
+    }
+  }).showToast();
   } else {
     eventTitleInput.classList.add('error');
   }
@@ -154,12 +157,15 @@ function deleteEvent() {
   localStorage.setItem('events', JSON.stringify(events));
   closeModal();
   Toastify({
-
-    text: "Borraste un Evento",
+    text: "Borraste un Evento!",
+    duration: 3000,
+    gravity: 'top',
     position: 'right',
-    duration: 3000
-    
-    }).showToast();
+    className:'tostada',
+    style: {
+      background: 'linear-gradient(to right, #999999, #333333)'
+  }
+}).showToast();
 }
 
 //Botenes next y back
