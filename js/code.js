@@ -33,6 +33,8 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+//abrir modales
+
 function openModal(date) {
   clicked = date;
 
@@ -47,6 +49,8 @@ function openModal(date) {
 
   backDrop.style.display = 'block';
 }
+
+// funcion del carga del calendario 
 
 function load() {
   const dt = new Date();
@@ -74,6 +78,8 @@ function load() {
     `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
+
+//contador de dias mensuales
 
   for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
@@ -105,6 +111,8 @@ function load() {
   }
 }
 
+//cerrar modales
+
 function closeModal() {
   eventTitleInput.classList.remove('error');
   newEventModal.style.display = 'none';
@@ -114,6 +122,8 @@ function closeModal() {
   clicked = null;
   load();
 }
+
+//guardar eventos
 
 function saveEvent() {
   if (eventTitleInput.value) {
@@ -126,6 +136,14 @@ function saveEvent() {
 
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
+
+    Toastify({
+
+      text: "Guardaste un evento",
+      position: 'right',
+      duration: 3000
+      
+      }).showToast();
   } else {
     eventTitleInput.classList.add('error');
   }
@@ -135,7 +153,16 @@ function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
   localStorage.setItem('events', JSON.stringify(events));
   closeModal();
+  Toastify({
+
+    text: "Borraste un Evento",
+    position: 'right',
+    duration: 3000
+    
+    }).showToast();
 }
+
+//Botenes next y back
 
 function initButtons() {
   document.getElementById('nextButton').addEventListener('click', () => {
