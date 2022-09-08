@@ -137,16 +137,27 @@ function saveEvent() {
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
 
-    Toastify({
-      text: "Guardaste un Evento!",
-      duration: 3000,
-      gravity: 'top',
-      position: 'right',
-      className:'tostada',
-      style: {
-        background: 'linear-gradient(to right, #999999, #333333)'
-    }
-  }).showToast();
+    fetch ('https://jsonplaceholder.typicode.com/posts',
+      {
+        method: "POST",
+        body: JSON.stringify(events),
+        headers:{
+          'Content-type':'application/json; charset=UTF-8'
+        }
+      })
+      .then((response) => response.json())
+      .then ((data) => 
+        Toastify({
+          text: "Guardaste un Evento!",
+          duration: 3000,
+          gravity: 'top',
+          position: 'right',
+          className:'tostada',
+          style: {
+            background: 'linear-gradient(to right, #999999, #333333)'
+        }
+      }).showToast()
+      )
   } else {
     eventTitleInput.classList.add('error');
   }
@@ -156,16 +167,27 @@ function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
   localStorage.setItem('events', JSON.stringify(events));
   closeModal();
-  Toastify({
-    text: "Borraste un Evento!",
-    duration: 3000,
-    gravity: 'top',
-    position: 'right',
-    className:'tostada',
-    style: {
-      background: 'linear-gradient(to right, #999999, #333333)'
-  }
-}).showToast();
+  fetch ('https://jsonplaceholder.typicode.com/posts',
+  {
+    method: "POST",
+    body: JSON.stringify(events),
+    headers:{
+      'Content-type':'application/json; charset=UTF-8'
+    }
+  })
+  .then((response) => response.json())
+  .then ((data) => 
+    Toastify({
+      text: "Borraste un Evento!",
+      duration: 3000,
+      gravity: 'top',
+      position: 'right',
+      className:'tostada',
+      style: {
+        background: 'linear-gradient(to right, #999999, #333333)'
+    }
+    }).showToast()
+  )
 }
 
 //Botenes next y back
@@ -190,3 +212,5 @@ function initButtons() {
 
 initButtons();
 load();
+
+
