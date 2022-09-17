@@ -1,26 +1,3 @@
-/*class Nacimiento {
-    constructor(nombre, dia, mes, anio) {
-        this.nombre = nombre;
-        this.dia = parseInt(dia);
-        this.mes = mes;
-        this.anio = parseInt(anio);
-    }
-}
-
-function crearNacimiento() {
-    let nombreNacimiento = prompt("Cual es tu nombre?");
-    let diaNacimiento = parseInt(prompt("En que dia naciste?"));
-    let mesNacimiento = prompt("Cual es el mes en el que naciste?");
-    let anioNacimiento = parseInt(prompt("Y en que año naciste?"));
-    let cumpleanios = new Nacimiento(nombreNacimiento, diaNacimiento, mesNacimiento, anioNacimiento);
-    return cumpleanios;
-}
-const fechaNacimiento = [];
-
-function sumarNacimiento(cumpleanios, arr) {
-    arr.push(cumpleanios);
-}
-*/
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
@@ -32,6 +9,61 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const apiKey = '02aada2a50bd4beb6abbdddb148cfd2b';
+
+//seteando datos del clima
+
+const fetchData = position => {
+  const {
+    latitude,
+    longitude
+  } = position.coords;
+  fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(data => setWeatherData(data))
+}
+
+const setWeatherData = data => {
+  console.log(data);
+  const weatherData = {
+    location: data.name,
+    description: data.weather[0].description,
+    humidity: data.main.humidity,
+    wind: Number(data.wind.speed.toFixed(1)),
+    temperature: Number(data.main.temp.toFixed(1)),
+    date: getToday(),
+  }
+
+  Object.keys(weatherData).forEach(key => {
+    document.getElementById(key).textContent = weatherData[key];
+  });
+
+  cleanUp();
+}
+
+//clean para esperar la carga de datos
+
+const cleanUp = () => {
+  let weatherContainer = document.getElementById('weatherContainer');
+  let loader = document.getElementById('loader');
+
+  loader.style.display = 'none';
+  weatherContainer.style.display = 'flex';
+
+}
+
+//fecha actual
+
+const getToday = () => {
+  let date = new Date();
+  return `${date.getDate()}/${ ( '0' + (date.getMonth() +1)).slice(-2) }/${date.getFullYear()}`
+}
+
+//solicitando ubicacion
+
+const onLoad = () => {
+  navigator.geolocation.getCurrentPosition(fetchData);
+}
 
 //abrir modales
 
@@ -65,7 +97,7 @@ function load() {
 
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
   const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
     weekday: 'long',
     year: 'numeric',
@@ -74,14 +106,14 @@ function load() {
   });
   const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
-  document.getElementById('monthDisplay').innerText = 
+  document.getElementById('monthDisplay').innerText =
     `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
 
-//contador de dias mensuales
+  //contador de dias mensuales
 
-  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+  for (let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
 
@@ -107,7 +139,7 @@ function load() {
       daySquare.classList.add('padding');
     }
 
-    calendar.appendChild(daySquare); 
+    calendar.appendChild(daySquare);
   }
 }
 
@@ -137,26 +169,25 @@ function saveEvent() {
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
 
-    fetch ('https://jsonplaceholder.typicode.com/posts',
-      {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
         method: "POST",
         body: JSON.stringify(events),
-        headers:{
-          'Content-type':'application/json; charset=UTF-8'
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
         }
       })
       .then((response) => response.json())
-      .then ((data) => 
+      .then((data) =>
         Toastify({
           text: "Guardaste un Evento!",
           duration: 3000,
           gravity: 'top',
           position: 'right',
-          className:'tostada',
+          className: 'tostada',
           style: {
             background: 'linear-gradient(to right, #999999, #333333)'
-        }
-      }).showToast()
+          }
+        }).showToast()
       )
   } else {
     eventTitleInput.classList.add('error');
@@ -167,27 +198,26 @@ function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
   localStorage.setItem('events', JSON.stringify(events));
   closeModal();
-  fetch ('https://jsonplaceholder.typicode.com/posts',
-  {
-    method: "POST",
-    body: JSON.stringify(events),
-    headers:{
-      'Content-type':'application/json; charset=UTF-8'
-    }
-  })
-  .then((response) => response.json())
-  .then ((data) => 
-    Toastify({
-      text: "Borraste un Evento!",
-      duration: 3000,
-      gravity: 'top',
-      position: 'right',
-      className:'tostada',
-      style: {
-        background: 'linear-gradient(to right, #999999, #333333)'
-    }
-    }).showToast()
-  )
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: "POST",
+      body: JSON.stringify(events),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    })
+    .then((response) => response.json())
+    .then((data) =>
+      Toastify({
+        text: "Borraste un Evento!",
+        duration: 3000,
+        gravity: 'top',
+        position: 'right',
+        className: 'tostada',
+        style: {
+          background: 'linear-gradient(to right, #999999, #333333)'
+        }
+      }).showToast()
+    )
 }
 
 //Botenes next y back
@@ -212,5 +242,3 @@ function initButtons() {
 
 initButtons();
 load();
-
-

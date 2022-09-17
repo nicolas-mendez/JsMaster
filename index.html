@@ -16,7 +16,32 @@
     <title>Calendario</title>
 </head>
 
-<body>
+<body onload="onLoad()">
+
+    <section class="weather">
+        <div id="weatherContainer">
+            <div class="block">
+                <div id="location"></div>
+                <div id="date"></div>
+                <div id="description"></div>
+            </div>
+            <div class="block">
+                <div class="informationContainer">
+                    Temperatura C°:
+                    <div class="info" id="temperature"></div>
+                </div>
+                <div class="informationContainer">
+                    Humedad % :
+                    <div class="info" id="humidity"></div>
+                </div>
+                <div class="informationContainer">
+                    Viento Km/h:
+                    <div class="info" id="wind"></div>
+                </div>
+            </div>
+        </div>
+        <div class="loader" id="loader">Loading...</div>
+    </section>
 
     <div id="container">
         <div id="header">

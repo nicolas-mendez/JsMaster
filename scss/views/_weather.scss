@@ -1,0 +1,39 @@
+@import "../base/variables";
+@import "../utilities/breakpoints";
+@import "../utilities/spinner";
+
+.weather {
+    height: 30vb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #weatherContainer {
+        background-color: #555555;
+        padding: 1rem;
+        display: none;
+
+        .block:first-child {
+            background-color: #999999;
+            color: #000;
+        }
+
+        .block {
+            padding: 20px;
+            color: #99aab5;
+
+            #location {
+                font-weight: 700;
+                font-size: 1.2rem;
+            }
+
+            .informationContainer {
+                display: flex;
+
+                .info {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
